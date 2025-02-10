@@ -2,21 +2,36 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Menu } from "@/presentation/add-department/components/menu"
 import axios from "axios"
+import { News } from "@/core/components/news"
+import { Circulum } from "@/core/components/circulum"
+import { QandA } from "@/core/components/QandA"
+import { Location } from "@/core/components/location"
 
 export default function Home() {
-  const [departments, setDepartments] = useState([])
-  const [menu, setMenu] = useState([])
-  const [id, setId] = useState("")
-  const [menuId, setMenuId] = useState("")
-
-  const [showInput, setShowInput] = useState(false)
-  const [newMenu, setNewMenu] = useState("")
-
-  const toggleInput = () => {
-    setShowInput(!showInput)
+  interface Department {
+    id: number
+    name: string
   }
+
+  interface Menu {
+    id: number
+    documentId: string
+    name: string
+    content: Content[]
+  }
+
+  interface Content {
+    id: number
+    name: string
+    detail: string
+    image: string
+  }
+
+  const [departments, setDepartments] = useState<Department[]>([])
+  const [menu, setMenu] = useState<Menu[]>([])
+  const [selectedDepartmentsName, setSelectedDepartmentsName] = useState("")
+  const [selectedMenu, setSelectedMenu] = useState<Menu>()
 
   const getDepartments = async () => {
     const url = "http://localhost:1337"
@@ -33,91 +48,87 @@ export default function Home() {
     try {
       const res = await axios.get(`${url}/api/departments/${id}/?populate=*`)
       setMenu(res.data.data.menus)
-      console.log(res.data.data.menus)
     } catch (error) {
       console.error("Error getting number of departments:", error)
     }
   }
 
-  const createMenu = async (id: string) => {
+  const getMenuContent = async (id: string) => {
     const url = "http://localhost:1337"
     try {
-      const res = await axios.post(`${url}/api/menus`, {
-        data: { name: newMenu, department: id },
-      })
-      getMenu(id)
+      const res = await axios.get(`${url}/api/menus/${id}?populate[content][populate]=image&populate[content][populate]=QandA`)
+      setSelectedMenu(res.data.data)
+      console.log(res.data.data)
     } catch (error) {
-      console.error("Error creating menu:", error)
+      console.error("Error getting number of departments:", error)
     }
   }
 
-  const handleSelectDepartment = (id: string) => {
+  const handleSelectDepartment = (id: string, name: string) => {
     getMenu(id)
-    setId(id)
+    setSelectedDepartmentsName(name)
   }
+
+  const handleSelectMenu = (id: string) => {
+    getMenuContent(id)
+  }
+
 
   useEffect(() => {
     getDepartments()
   }, [])
 
   return (
-    <div className=" pt-[80px] px-[30px]">
-      <div className=" grid grid-cols-4 gap-[10px]">
-        <div className="flex flex-col col-span-1 gap-[10px]">
-          <Link
-            href="/add-department"
+    <div className=" pt-[120px] px-[70px]">
+      <div className="flex col-span-1 gap-[10px] w-full">
+        {departments.map((department: any) => (
+          <div
+            key={department.id}
             className=" hover:text-pink-400 cursor-pointer"
+            onClick={() =>
+              handleSelectDepartment(department.documentId, department.name)
+            }
           >
-            สร้าง department +
-          </Link>
-          {departments.map((department: any) => (
-            <div
-              key={department.id}
-              className=" hover:text-pink-400 cursor-pointer"
-              onClick={() => handleSelectDepartment(department.documentId)}
-            >
-              {department.name}
-            </div>
-          ))}
-        </div>
-        <div className=" col-span-1">
-          {menu?.map((menu: any) => (
-            <Menu key={menu.id} name={menu.name} id={menu.id} />
-          ))}
-
-          {id && (
-            <div>
-              <button
-                className="text-[16px] text-pink-400"
-                onClick={toggleInput}
-              >
-                เพิ่มเมนู
-              </button>
-              {showInput && (
-                <div>
-                  <input
-                    type="text"
-                    className="w-full border border-slate-300"
-                    value={newMenu}
-                    onChange={(e) => setNewMenu(e.target.value)}
-                  />
-                  <button onClick={() => createMenu(id)}>Submit</button>
-                </div>
-              )}
+            {department.name}
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-4 w-full gap-[30px]">
+        <div className="col-span-1 w-full">
+          {selectedDepartmentsName && (
+            <div className="pb-[20px]">
+              <p className="text-[30px]">{selectedDepartmentsName}</p>
+              <div className="bg-[#ff9a68] h-1 w-[30%]"></div>
             </div>
           )}
-        </div>
-        <div className=" col-span-2">
-          {menuId && (
-            <div className="flex flex-col gap-[10px]">
-              <button className="text-[16px] text-pink-400 cursor-pointer bg-blue-400">เพิ่มเนื้อหา</button>
-              <div className="flex">
-                
+          {menu?.map((menu: Menu) => (
+            <div
+              key={menu.id}
+              className={`${
+                selectedMenu?.documentId === menu.documentId
+                  ? "bg-pink-400"
+                  : ""
+              } w-full bg-gray-200 gap-[10px] flex flex-col p-[10px] `}
+            >
+              <div onClick={() => handleSelectMenu(menu.documentId)}>
+                <p className="text-[16px]">{menu.name}</p>
               </div>
             </div>
+          ))}
+        </div>
+        <div className="col-span-3 w-full">
+          {selectedMenu?.name === "หน้าหลัก" && (
+            <News selectedMenu={selectedMenu} />
           )}
-          <div className="flex flex-col gap-[10px]">
-          </div>
+          {selectedMenu?.name === "หลักสูตรที่เปิดสอน" && (
+            <Circulum selectedMenu={selectedMenu} />
+          )}
+          {selectedMenu?.name === "Q&A สมัครเข้าศึกษา" && (
+            <QandA selectedMenu={selectedMenu} />
+          )}
+          {selectedMenu?.name === "ตำแหน่ง" && (
+            <Location selectedMenu={selectedMenu} />
+          )}
         </div>
       </div>
     </div>

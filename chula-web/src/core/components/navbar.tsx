@@ -1,16 +1,19 @@
-"use client"
-import React, { useEffect, useState } from "react"
 import Link from "next/link"
-import axios from "axios"
+import Image from "next/image"
+
 export const Navbar = () => {
-
-
   return (
-    <div className="fixed w-full h-14 flex justify-between items-center p-4 z-[300]">
+    <div className="fixed w-full h-[100px] flex justify-between items-center pt-[30px] px-[70px] z-[300]">
       <div className="flex text-2xl font-bold gap-[10px]">
-        <Link href="/" className="hover:text-pink-400 cursor-pointer">Chula University</Link>
+        <Link href="/" className="hover:text-pink-400 cursor-pointer">
+          <Image
+            src="/images/Chula_logo.png"
+            alt="logo"
+            width={250}
+            height={50}
+          />
+        </Link>
       </div>
-      <div className="flex items-center gap-[10px]"></div>
     </div>
   )
 }

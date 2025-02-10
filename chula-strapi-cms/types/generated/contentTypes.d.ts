@@ -418,6 +418,7 @@ export interface ApiMenuMenu extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::department.department'
     >;
+    iframe: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'> &
       Schema.Attribute.Private;

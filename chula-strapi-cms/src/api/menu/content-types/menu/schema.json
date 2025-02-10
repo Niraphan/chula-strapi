@@ -26,6 +26,9 @@
       "type": "component",
       "repeatable": true,
       "component": "content.content"
+    },
+    "iframe": {
+      "type": "string"
     }
   }
 }

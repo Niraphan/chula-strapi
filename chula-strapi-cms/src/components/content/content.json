@@ -2,7 +2,8 @@
   "collectionName": "components_content_contents",
   "info": {
     "displayName": "content",
-    "icon": "fileError"
+    "icon": "fileError",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,14 +14,28 @@
       "type": "richtext"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "html": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultHtml"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "QandA": {
+      "displayName": "Q&A",
+      "type": "component",
+      "repeatable": true,
+      "component": "qand-a.q-and-a"
     }
   }
 }
