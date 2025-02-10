@@ -1,0 +1,17 @@
+{
+	"Print to console": {
+		"prefix": "myreact",
+		"body": [
+			"'use client'",
+			"import React,{useEffect,useState} from 'react'",
+			"export const ${TM_FILENAME_BASE/[^0-9^a-z]//gi}$1 = () =>{",
+			"",
+			"useEffect(()=>{},[])",
+			"  const [number, setNumber] = useState(0)",
+			"",
+			"return <div>${TM_FILENAME_BASE/[^0-9^a-z]//gi}$1</div>",
+			"}"
+		],
+		"description": "ntw React snippet"
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_content_contents",
+  "info": {
+    "displayName": "content",
+    "icon": "fileError"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "detail": {
+      "type": "richtext"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"React Route Component": {
+	  "prefix": "mypages",
+	  "body": [
+		"import Head from \"next/head\";",
+		"export default function Page() {",
+		"  return (",
+		"    <>",
+		"      <Head>",
+		"        <title>${TM_FILENAME_BASE/[^0-9^a-z]//gi}$1 - Your App Name</title>",
+		"        <meta name=\"description\" content=\"Description of ${TM_FILENAME_BASE/[^0-9^a-z]//gi}$1 page.\" />",
+		"        <meta name=\"keywords\" content=\"${TM_FILENAME_BASE/[^0-9^a-z]//gi}$1, keyword1, keyword2\" />",
+		"        <meta name=\"author\" content=\"Your Name or Company\" />",
+		"      </Head>",
+		"    </>",
+		"  );",
+		"}"
+	  ],
+	  "description": "React Route Component with Meta Tags and Dynamic Filename"
+	}
+  }
+  
