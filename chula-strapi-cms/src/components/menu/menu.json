@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_menu_menus",
+  "info": {
+    "displayName": "menu",
+    "icon": "briefcase",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "submenu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

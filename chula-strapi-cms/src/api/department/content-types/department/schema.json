@@ -4,7 +4,8 @@
   "info": {
     "singularName": "department",
     "pluralName": "departments",
-    "displayName": "Department"
+    "displayName": "Department",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,13 @@
     },
     "name": {
       "type": "string"
+    },
+    "menu": {
+      "type": "dynamiczone",
+      "components": [
+        "qand-a.q-and-a",
+        "menu.menu"
+      ]
     }
   }
 }

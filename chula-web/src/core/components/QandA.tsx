@@ -7,7 +7,7 @@ export const QandA = ({ selectedMenu }: any) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   const toggleDropdown = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index) // Toggle open/close
+    setOpenIndex(openIndex === index ? null : index)
   }
 
   return (
@@ -22,7 +22,7 @@ export const QandA = ({ selectedMenu }: any) => {
           transition={{ type: "spring", stiffness: 300 }}
         >
           <div className="flex items-center py-[10px] px-[20px] cursor-pointer">
-            <p className="text-[20px] text-white">{QandA?.Question}</p>
+            <p className="text-[20px] text-white">Q: {QandA?.Question}</p>
             <span className="ml-2 text-white">{openIndex === index ? "-" : "+"}</span>
           </div>
           {openIndex === index && (
@@ -35,10 +35,10 @@ export const QandA = ({ selectedMenu }: any) => {
             >
               {QandA?.link ? (
                 <Link href={QandA?.link} className="text-[16px] underline">
-                  <p className="text-[16px]">{QandA?.Answer}</p>
+                  <p className="text-[16px]">A: {QandA?.Answer}</p>
                 </Link>
               ) : (
-                <p className="text-[16px]">{QandA?.Answer}</p>
+                <p className="text-[16px]">A: {QandA?.Answer}</p>
               )}
             </motion.div>
           )}

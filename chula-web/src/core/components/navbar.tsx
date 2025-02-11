@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export const Navbar = () => {
   return (
-    <div className="fixed w-full h-[100px] flex justify-between items-center pt-[30px] px-[70px] z-[300]">
+    <div className="fixed w-full h-[100px] flex justify-between items-center pt-[30px] px-[70px] z-[50] bg-white">
       <div className="flex text-2xl font-bold gap-[10px]">
         <Link href="/" className="hover:text-pink-400 cursor-pointer">
           <Image

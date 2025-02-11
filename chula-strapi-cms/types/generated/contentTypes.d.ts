@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
   collectionName: 'departments';
   info: {
+    description: '';
     displayName: 'Department';
     pluralName: 'departments';
     singularName: 'department';
@@ -389,6 +390,7 @@ export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
       'api::department.department'
     > &
       Schema.Attribute.Private;
+    menu: Schema.Attribute.DynamicZone<['qand-a.q-and-a', 'menu.menu']>;
     menus: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'>;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -664,6 +666,62 @@ export interface PluginReviewWorkflowsWorkflowStage
       'manyToOne',
       'plugin::review-workflows.workflow'
     >;
+  };
+}
+
+export interface PluginStrapiPluginPdfCreatorTemplate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'strapi-plugin-pdf-creator_template';
+  info: {
+    description: 'Templates used for PDF Template plugin';
+    displayName: 'PDF Templates';
+    kind: 'collectionType';
+    pluralName: 'templates';
+    singularName: 'template';
+    tableName: 'template';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    collectionName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    file: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    flattenDocument: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::strapi-plugin-pdf-creator.template'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 40;
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -946,6 +1004,7 @@ declare module '@strapi/strapi' {
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
+      'plugin::strapi-plugin-pdf-creator.template': PluginStrapiPluginPdfCreatorTemplate;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
