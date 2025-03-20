@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commander_charts",
+  "info": {
+    "singularName": "commander-chart",
+    "pluralName": "commander-charts",
+    "displayName": " Commander chart",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "type": "component",
+      "repeatable": true,
+      "component": "commander.role"
+    }
+  }
+}

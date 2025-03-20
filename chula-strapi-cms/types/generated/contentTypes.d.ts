@@ -369,13 +369,14 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
-  collectionName: 'departments';
+export interface ApiCommanderChartCommanderChart
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'commander_charts';
   info: {
     description: '';
-    displayName: 'Department';
-    pluralName: 'departments';
-    singularName: 'department';
+    displayName: ' Commander chart';
+    pluralName: 'commander-charts';
+    singularName: 'commander-chart';
   };
   options: {
     draftAndPublish: true;
@@ -387,45 +388,11 @@ export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::department.department'
+      'api::commander-chart.commander-chart'
     > &
       Schema.Attribute.Private;
-    menu: Schema.Attribute.DynamicZone<['qand-a.q-and-a', 'menu.menu']>;
-    menus: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'>;
-    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiMenuMenu extends Struct.CollectionTypeSchema {
-  collectionName: 'menus';
-  info: {
-    description: '';
-    displayName: 'Menu';
-    pluralName: 'menus';
-    singularName: 'menu';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    content: Schema.Attribute.Component<'content.content', true>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    department: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::department.department'
-    >;
-    iframe: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Component<'commander.role', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -997,8 +964,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::department.department': ApiDepartmentDepartment;
-      'api::menu.menu': ApiMenuMenu;
+      'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

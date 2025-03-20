@@ -1,18 +1,17 @@
 {
-  "collectionName": "components_menu_menus",
+  "collectionName": "components_commander_roles",
   "info": {
-    "displayName": "menu",
-    "icon": "briefcase",
+    "displayName": "role",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "submenu": {
+    "person": {
       "type": "component",
       "repeatable": true,
-      "component": "content.content"
+      "component": "commander.commander"
     },
-    "name": {
+    "nameRole": {
       "type": "string"
     }
   }

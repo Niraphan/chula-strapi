@@ -21,11 +21,6 @@ export default ({ env }) => {
                 },
             },
             pool: { min: env.int("DATABASE_POOL_MIN", 2), max: env.int("DATABASE_POOL_MAX", 10) },
-            settings: {
-                forceMigration: true, // Enable/disable forced database migration
-                runMigrations: true, // Enable/disable migrations on startup
-                useTypescriptMigrations: false, // Look for migrations in build dir instead of src dir
-            },
         },
     }
     return {
