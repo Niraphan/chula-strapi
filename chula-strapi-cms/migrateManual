@@ -1,0 +1,69 @@
+## add setting config in database.ts that in @/config/database.ts
+
+    Mysql:{
+        connection:{
+            ...
+        },
+        settings: {
+                forceMigration: true, // Enable/disable forced database migration
+                runMigrations: true, // Enable/disable migrations on startup
+                useTypescriptMigrations: false, // Look for migrations in build dir instead of src dir
+            }
+    }
+
+## install knex.js to migration database => Knex.js is a SQL query builder for Node.js that allows you to interact with relational databases like MySQL, PostgreSQL, SQLite, and others.
+
+    # command to install knex and install knexfile.js
+        npm install knex
+        npx knex init
+
+    # command to migrate database
+        npx knex migrate:make <-name of migra you want->
+
+    # command to run migrate 
+        npx knex migrate:latest
+    
+    # command to roll back 
+        npx knex migrate:rollback
+
+
+    # setting knexfile.js to the database we use
+        module.exports = {
+            development: {
+                client: "mysql2", // change to your database client
+                connection: {
+                host: "localhost", // Change to your MySQL host if different
+                user: "your_mysql_user",
+                password: "your_mysql_password",
+                database: "your_dev_db",
+            },
+            pool: {
+                min: 2,
+                max: 10,
+            },
+            },
+            migrations: {
+                tableName: "knex_migrations",
+                directory: "./database/migrations", // location to store migrations
+            },
+        },
+            production: {
+                client: "mysql2",
+                connection: {
+                host: "your_production_host",
+                user: "your_production_user",
+                password: "your_production_password",
+                database: "your_production_db",
+        },
+            pool: {
+                min: 2,
+                max: 10,
+        },
+            migrations: {
+                tableName: "knex_migrations",
+                directory: "./database/migrations",
+        },
+
+        #
+
+}

@@ -47,19 +47,19 @@ export default function Home() {
     }
   }
 
-  const getDepartmentDetail = async (id: string) => {
-    const url = "http://localhost:1337"
-    try {
-      const res = await axios.get(`${url}/api/departments/${id}/?populate[menu][populate][submenu][populate]=image`)
-      setSelectedDepartmentsDetail(res.data.data)
-      console.log(res.data.data)
-      setMenu2(res.data.data.menu)
-      console.log(res.data.data.menu)
-    } catch (error) {
-      console.error("Error getting number of departments:", error)
-    }
+  // const getDepartmentDetail = async (id: string) => {
+  //   const url = "http://localhost:1337"
+  //   try {
+  //     const res = await axios.get(`${url}/api/departments/${id}/?populate[menu][populate][submenu][populate]=image`)
+  //     setSelectedDepartmentsDetail(res.data.data)
+  //     console.log(res.data.data)
+  //     setMenu2(res.data.data.menu)
+  //     console.log(res.data.data.menu)
+  //   } catch (error) {
+  //     console.error("Error getting number of departments:", error)
+  //   }
 
-  }
+  // }
 
   const getMenu = async (id: string) => {
     const url = "http://localhost:1337"
@@ -83,7 +83,7 @@ export default function Home() {
   }
 
   const handleSelectDepartment = (id: string, name: string) => {
-    getDepartmentDetail(id)
+    // getDepartmentDetail(id)
     getMenu(id)
     setSelectedDepartmentsName(name)
   }

@@ -22,6 +22,17 @@ export interface ContentContent extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentNews extends Struct.ComponentSchema {
+  collectionName: 'components_content_news';
+  info: {
+    displayName: 'News';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    Name: Schema.Attribute.String;
+  };
+}
+
 export interface MenuMenu extends Struct.ComponentSchema {
   collectionName: 'components_menu_menus';
   info: {
@@ -62,6 +73,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'content.content': ContentContent;
+      'content.news': ContentNews;
       'menu.menu': MenuMenu;
       'menu.submenu': MenuSubmenu;
       'qand-a.q-and-a': QandAQAndA;
