@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_contact_container_contacts",
+  "info": {
+    "displayName": "container contact",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "ContactDetail": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.contact"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

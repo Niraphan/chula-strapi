@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "contact",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contact": {
+      "displayName": "container contact",
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.container-contact"
+    }
+  }
+}

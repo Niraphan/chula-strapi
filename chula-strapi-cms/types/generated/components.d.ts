@@ -30,11 +30,38 @@ export interface CommanderRole extends Struct.ComponentSchema {
   };
 }
 
+export interface ContactContact extends Struct.ComponentSchema {
+  collectionName: 'components_contact_contacts';
+  info: {
+    displayName: 'contact';
+    icon: 'phone';
+  };
+  attributes: {
+    link: Schema.Attribute.String;
+    text: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['address', 'phone', 'email', 'other']>;
+  };
+}
+
+export interface ContactContainerContact extends Struct.ComponentSchema {
+  collectionName: 'components_contact_container_contacts';
+  info: {
+    displayName: 'container contact';
+    icon: 'phone';
+  };
+  attributes: {
+    ContactDetail: Schema.Attribute.Component<'contact.contact', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'commander.commander': CommanderCommander;
       'commander.role': CommanderRole;
+      'contact.contact': ContactContact;
+      'contact.container-contact': ContactContainerContact;
     }
   }
 }
