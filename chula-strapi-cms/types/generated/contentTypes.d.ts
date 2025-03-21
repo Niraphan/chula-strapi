@@ -369,6 +369,36 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAgencyAgency extends Struct.CollectionTypeSchema {
+  collectionName: 'agencies';
+  info: {
+    description: '';
+    displayName: ' Agency';
+    pluralName: 'agencies';
+    singularName: 'agency';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    group: Schema.Attribute.Component<'agency.group', false> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::agency.agency'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAuthorityAndFunctionAuthorityAndFunction
   extends Struct.CollectionTypeSchema {
   collectionName: 'authority_and_functions';
@@ -484,6 +514,36 @@ export interface ApiHistory2History2 extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Years: Schema.Attribute.Component<'history.years', false> &
       Schema.Attribute.Required;
+  };
+}
+
+export interface ApiOrganizationalStructureOrganizationalStructure
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'organizational_structures';
+  info: {
+    displayName: 'Organizational Structure';
+    pluralName: 'organizational-structures';
+    singularName: 'organizational-structure';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::organizational-structure.organizational-structure'
+    > &
+      Schema.Attribute.Private;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1082,10 +1142,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::agency.agency': ApiAgencyAgency;
       'api::authority-and-function.authority-and-function': ApiAuthorityAndFunctionAuthorityAndFunction;
       'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'api::contact.contact': ApiContactContact;
       'api::history2.history2': ApiHistory2History2;
+      'api::organizational-structure.organizational-structure': ApiOrganizationalStructureOrganizationalStructure;
       'api::vision.vision': ApiVisionVision;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

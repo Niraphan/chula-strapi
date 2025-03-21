@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AgencyGroup extends Struct.ComponentSchema {
+  collectionName: 'components_agency_groups';
+  info: {
+    displayName: 'group';
+  };
+  attributes: {
+    AgencyName: Schema.Attribute.String;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface CommanderCommander extends Struct.ComponentSchema {
   collectionName: 'components_commander_commanders';
   info: {
@@ -82,6 +93,7 @@ export interface HistoryYears extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'agency.group': AgencyGroup;
       'commander.commander': CommanderCommander;
       'commander.role': CommanderRole;
       'contact.contact': ContactContact;
