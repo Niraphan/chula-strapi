@@ -428,6 +428,66 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHistory2History2 extends Struct.CollectionTypeSchema {
+  collectionName: 'history2s';
+  info: {
+    description: '';
+    displayName: 'History';
+    pluralName: 'history2s';
+    singularName: 'history2';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::history2.history2'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Years: Schema.Attribute.Component<'history.years', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ApiVisionVision extends Struct.CollectionTypeSchema {
+  collectionName: 'visions';
+  info: {
+    displayName: 'vision';
+    pluralName: 'visions';
+    singularName: 'vision';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vision.vision'
+    > &
+      Schema.Attribute.Private;
+    mission: Schema.Attribute.RichText;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Values: Schema.Attribute.RichText;
+    vision: Schema.Attribute.RichText;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -995,6 +1055,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'api::contact.contact': ApiContactContact;
+      'api::history2.history2': ApiHistory2History2;
+      'api::vision.vision': ApiVisionVision;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

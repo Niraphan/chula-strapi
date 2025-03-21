@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_history_years",
+  "info": {
+    "displayName": "Years"
+  },
+  "options": {},
+  "attributes": {
+    "Year": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "groups": {
+      "displayName": "Group",
+      "type": "component",
+      "repeatable": true,
+      "component": "history.group"
+    }
+  }
+}

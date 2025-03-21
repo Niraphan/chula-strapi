@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history2s",
+  "info": {
+    "singularName": "history2",
+    "pluralName": "history2s",
+    "displayName": "History",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Years": {
+      "type": "component",
+      "repeatable": false,
+      "component": "history.years",
+      "required": true
+    }
+  }
+}

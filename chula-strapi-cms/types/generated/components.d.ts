@@ -55,6 +55,30 @@ export interface ContactContainerContact extends Struct.ComponentSchema {
   };
 }
 
+export interface HistoryGroup extends Struct.ComponentSchema {
+  collectionName: 'components_history_groups';
+  info: {
+    description: '';
+    displayName: 'Group';
+  };
+  attributes: {
+    groupname: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HistoryYears extends Struct.ComponentSchema {
+  collectionName: 'components_history_years';
+  info: {
+    displayName: 'Years';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    groups: Schema.Attribute.Component<'history.group', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    Year: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -62,6 +86,8 @@ declare module '@strapi/strapi' {
       'commander.role': CommanderRole;
       'contact.contact': ContactContact;
       'contact.container-contact': ContactContainerContact;
+      'history.group': HistoryGroup;
+      'history.years': HistoryYears;
     }
   }
 }
