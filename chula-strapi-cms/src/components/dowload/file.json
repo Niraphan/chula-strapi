@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_dowload_files",
+  "info": {
+    "displayName": "file",
+    "icon": "folder"
+  },
+  "options": {},
+  "attributes": {
+    "file": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "fileName": {
+      "type": "string"
+    }
+  }
+}
