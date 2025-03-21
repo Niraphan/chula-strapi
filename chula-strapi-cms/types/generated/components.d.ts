@@ -66,6 +66,27 @@ export interface ContactContainerContact extends Struct.ComponentSchema {
   };
 }
 
+export interface DowloadFile extends Struct.ComponentSchema {
+  collectionName: 'components_dowload_files';
+  info: {
+    displayName: 'file';
+    icon: 'folder';
+  };
+  attributes: {
+    file: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    fileName: Schema.Attribute.String;
+  };
+}
+
+export interface DowloadTabsDowload extends Struct.ComponentSchema {
+  collectionName: 'components_dowload_tabs_dowloads';
+  info: {
+    displayName: 'tabs-dowload';
+    icon: 'archive';
+  };
+  attributes: {};
+}
+
 export interface HistoryGroup extends Struct.ComponentSchema {
   collectionName: 'components_history_groups';
   info: {
@@ -98,6 +119,8 @@ declare module '@strapi/strapi' {
       'commander.role': CommanderRole;
       'contact.contact': ContactContact;
       'contact.container-contact': ContactContainerContact;
+      'dowload.file': DowloadFile;
+      'dowload.tabs-dowload': DowloadTabsDowload;
       'history.group': HistoryGroup;
       'history.years': HistoryYears;
     }
