@@ -369,48 +369,43 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiActivityActivity extends Struct.CollectionTypeSchema {
-  collectionName: 'activities';
+export interface ApiAgencyAgency extends Struct.CollectionTypeSchema {
+  collectionName: 'agencies';
   info: {
-    displayName: 'activity';
-    pluralName: 'activities';
-    singularName: 'activity';
+    description: '';
+    displayName: ' Agency';
+    pluralName: 'agencies';
+    singularName: 'agency';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    banner: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    detail: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
+    group: Schema.Attribute.Component<'agency.group', false> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::activity.activity'
+      'api::agency.agency'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiBannerBanner extends Struct.SingleTypeSchema {
-  collectionName: 'banners';
+export interface ApiAuthorityAndFunctionAuthorityAndFunction
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'authority_and_functions';
   info: {
-    displayName: 'Banner';
-    pluralName: 'banners';
-    singularName: 'banner';
+    displayName: 'Authority&Function';
+    pluralName: 'authority-and-functions';
+    singularName: 'authority-and-function';
   };
   options: {
     draftAndPublish: true;
@@ -419,14 +414,11 @@ export interface ApiBannerBanner extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
+    detail: Schema.Attribute.RichText;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::banner.banner'
+      'api::authority-and-function.authority-and-function'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -441,7 +433,7 @@ export interface ApiCommanderChartCommanderChart
   collectionName: 'commander_charts';
   info: {
     description: '';
-    displayName: '\u0E41\u0E1C\u0E19\u0E1C\u0E31\u0E07\u0E1C\u0E39\u0E49\u0E1A\u0E31\u0E07\u0E04\u0E31\u0E1A\u0E1A\u0E31\u0E0D\u0E0A\u0E32';
+    displayName: ' Commander chart';
     pluralName: 'commander-charts';
     singularName: 'commander-chart';
   };
@@ -470,7 +462,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
     description: '';
-    displayName: 'Contact';
+    displayName: 'contact';
     pluralName: 'contacts';
     singularName: 'contact';
   };
@@ -495,12 +487,13 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDowloadDowload extends Struct.CollectionTypeSchema {
-  collectionName: 'dowloads';
+export interface ApiHistory2History2 extends Struct.CollectionTypeSchema {
+  collectionName: 'history2s';
   info: {
-    displayName: 'Dowload';
-    pluralName: 'dowloads';
-    singularName: 'dowload';
+    description: '';
+    displayName: 'History';
+    pluralName: 'history2s';
+    singularName: 'history2';
   };
   options: {
     draftAndPublish: true;
@@ -509,18 +502,78 @@ export interface ApiDowloadDowload extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    file: Schema.Attribute.Component<'dowload.file', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::dowload.dowload'
+      'api::history2.history2'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Years: Schema.Attribute.Component<'history.years', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ApiOrganizationalStructureOrganizationalStructure
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'organizational_structures';
+  info: {
+    displayName: 'Organizational Structure';
+    pluralName: 'organizational-structures';
+    singularName: 'organizational-structure';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::organizational-structure.organizational-structure'
+    > &
+      Schema.Attribute.Private;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVisionVision extends Struct.CollectionTypeSchema {
+  collectionName: 'visions';
+  info: {
+    displayName: 'vision';
+    pluralName: 'visions';
+    singularName: 'vision';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vision.vision'
+    > &
+      Schema.Attribute.Private;
+    mission: Schema.Attribute.RichText;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Values: Schema.Attribute.RichText;
+    vision: Schema.Attribute.RichText;
   };
 }
 
@@ -1089,11 +1142,13 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::activity.activity': ApiActivityActivity;
-      'api::banner.banner': ApiBannerBanner;
+      'api::agency.agency': ApiAgencyAgency;
+      'api::authority-and-function.authority-and-function': ApiAuthorityAndFunctionAuthorityAndFunction;
       'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'api::contact.contact': ApiContactContact;
-      'api::dowload.dowload': ApiDowloadDowload;
+      'api::history2.history2': ApiHistory2History2;
+      'api::organizational-structure.organizational-structure': ApiOrganizationalStructureOrganizationalStructure;
+      'api::vision.vision': ApiVisionVision;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

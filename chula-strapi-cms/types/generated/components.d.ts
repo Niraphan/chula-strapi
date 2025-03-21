@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AgencyGroup extends Struct.ComponentSchema {
+  collectionName: 'components_agency_groups';
+  info: {
+    displayName: 'group';
+  };
+  attributes: {
+    AgencyName: Schema.Attribute.String;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface CommanderCommander extends Struct.ComponentSchema {
   collectionName: 'components_commander_commanders';
   info: {
@@ -55,36 +66,40 @@ export interface ContactContainerContact extends Struct.ComponentSchema {
   };
 }
 
-export interface DowloadFile extends Struct.ComponentSchema {
-  collectionName: 'components_dowload_files';
+export interface HistoryGroup extends Struct.ComponentSchema {
+  collectionName: 'components_history_groups';
   info: {
-    displayName: 'file';
-    icon: 'folder';
+    description: '';
+    displayName: 'Group';
   };
   attributes: {
-    file: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
-    fileName: Schema.Attribute.String;
+    groupname: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface DowloadTabsDowload extends Struct.ComponentSchema {
-  collectionName: 'components_dowload_tabs_dowloads';
+export interface HistoryYears extends Struct.ComponentSchema {
+  collectionName: 'components_history_years';
   info: {
-    displayName: 'tabs-dowload';
-    icon: 'archive';
+    displayName: 'Years';
   };
-  attributes: {};
+  attributes: {
+    description: Schema.Attribute.Text;
+    groups: Schema.Attribute.Component<'history.group', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    Year: Schema.Attribute.String & Schema.Attribute.Required;
+  };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'agency.group': AgencyGroup;
       'commander.commander': CommanderCommander;
       'commander.role': CommanderRole;
       'contact.contact': ContactContact;
       'contact.container-contact': ContactContainerContact;
-      'dowload.file': DowloadFile;
-      'dowload.tabs-dowload': DowloadTabsDowload;
+      'history.group': HistoryGroup;
+      'history.years': HistoryYears;
     }
   }
 }

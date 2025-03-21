@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_history_groups",
+  "info": {
+    "displayName": "Group",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "groupname": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

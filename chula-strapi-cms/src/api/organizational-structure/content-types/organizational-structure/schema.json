@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organizational_structures",
+  "info": {
+    "singularName": "organizational-structure",
+    "pluralName": "organizational-structures",
+    "displayName": "Organizational Structure"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "picture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
