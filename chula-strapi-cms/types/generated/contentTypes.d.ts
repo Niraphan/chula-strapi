@@ -369,6 +369,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAuthorityAndFunctionAuthorityAndFunction
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'authority_and_functions';
+  info: {
+    displayName: 'Authority&Function';
+    pluralName: 'authority-and-functions';
+    singularName: 'authority-and-function';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    detail: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::authority-and-function.authority-and-function'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCommanderChartCommanderChart
   extends Struct.CollectionTypeSchema {
   collectionName: 'commander_charts';
@@ -1053,6 +1082,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::authority-and-function.authority-and-function': ApiAuthorityAndFunctionAuthorityAndFunction;
       'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'api::contact.contact': ApiContactContact;
       'api::history2.history2': ApiHistory2History2;
