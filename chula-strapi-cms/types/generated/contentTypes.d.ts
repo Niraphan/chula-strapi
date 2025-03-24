@@ -498,7 +498,7 @@ export interface ApiBannerBanner extends Struct.SingleTypeSchema {
 }
 
 export interface ApiCommanderChartCommanderChart
-  extends Struct.CollectionTypeSchema {
+  extends Struct.SingleTypeSchema {
   collectionName: 'commander_charts';
   info: {
     description: '';
