@@ -622,6 +622,35 @@ export interface ApiDowloadDowload extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
+  info: {
+    displayName: 'Footer';
+    pluralName: 'footers';
+    singularName: 'footer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contact: Schema.Attribute.Component<'contact.contact', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    department: Schema.Attribute.Component<'contact.department', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer.footer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHistory2History2 extends Struct.CollectionTypeSchema {
   collectionName: 'history2s';
   info: {
@@ -1315,6 +1344,7 @@ declare module '@strapi/strapi' {
       'api::contact.contact': ApiContactContact;
       'api::dowload-category.dowload-category': ApiDowloadCategoryDowloadCategory;
       'api::dowload.dowload': ApiDowloadDowload;
+      'api::footer.footer': ApiFooterFooter;
       'api::history2.history2': ApiHistory2History2;
       'api::organizational-structure.organizational-structure': ApiOrganizationalStructureOrganizationalStructure;
       'api::video.video': ApiVideoVideo;

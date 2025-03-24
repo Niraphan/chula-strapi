@@ -65,6 +65,17 @@ export interface ContactContainerContact extends Struct.ComponentSchema {
   };
 }
 
+export interface ContactDepartment extends Struct.ComponentSchema {
+  collectionName: 'components_contact_departments';
+  info: {
+    displayName: 'department';
+  };
+  attributes: {
+    link: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface DowloadFile extends Struct.ComponentSchema {
   collectionName: 'components_dowload_files';
   info: {
@@ -118,6 +129,7 @@ declare module '@strapi/strapi' {
       'commander.role': CommanderRole;
       'contact.contact': ContactContact;
       'contact.container-contact': ContactContainerContact;
+      'contact.department': ContactDepartment;
       'dowload.file': DowloadFile;
       'dowload.tabs-dowload': DowloadTabsDowload;
       'history.group': HistoryGroup;

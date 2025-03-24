@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_contact_departments",
+  "info": {
+    "displayName": "department"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "link": {
+      "type": "text"
+    }
+  }
+}
