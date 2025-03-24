@@ -435,26 +435,25 @@ export interface ApiAgencyAgency extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAuthorityAndFunctionAuthorityAndFunction
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'authority_and_functions';
+export interface ApiAuthorityAuthority extends Struct.SingleTypeSchema {
+  collectionName: 'authorities';
   info: {
-    displayName: 'Authority&Function';
-    pluralName: 'authority-and-functions';
-    singularName: 'authority-and-function';
+    displayName: 'Authority';
+    pluralName: 'authorities';
+    singularName: 'authority';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    authority: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    detail: Schema.Attribute.RichText;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::authority-and-function.authority-and-function'
+      'api::authority.authority'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -643,7 +642,7 @@ export interface ApiOrganizationalStructureOrganizationalStructure
   };
 }
 
-export interface ApiVisionVision extends Struct.CollectionTypeSchema {
+export interface ApiVisionVision extends Struct.SingleTypeSchema {
   collectionName: 'visions';
   info: {
     displayName: 'vision';
@@ -663,13 +662,13 @@ export interface ApiVisionVision extends Struct.CollectionTypeSchema {
       'api::vision.vision'
     > &
       Schema.Attribute.Private;
-    mission: Schema.Attribute.RichText;
+    mission: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Values: Schema.Attribute.RichText;
-    vision: Schema.Attribute.RichText;
+    values: Schema.Attribute.Text;
+    vision: Schema.Attribute.Text;
   };
 }
 
@@ -1240,7 +1239,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::activity.activity': ApiActivityActivity;
       'api::agency.agency': ApiAgencyAgency;
-      'api::authority-and-function.authority-and-function': ApiAuthorityAndFunctionAuthorityAndFunction;
+      'api::authority.authority': ApiAuthorityAuthority;
       'api::banner.banner': ApiBannerBanner;
       'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'api::contact.contact': ApiContactContact;

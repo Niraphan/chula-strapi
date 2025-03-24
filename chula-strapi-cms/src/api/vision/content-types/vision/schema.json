@@ -1,5 +1,5 @@
 {
-  "kind": "collectionType",
+  "kind": "singleType",
   "collectionName": "visions",
   "info": {
     "singularName": "vision",
@@ -12,13 +12,13 @@
   "pluginOptions": {},
   "attributes": {
     "vision": {
-      "type": "richtext"
+      "type": "text"
     },
     "mission": {
-      "type": "richtext"
+      "type": "text"
     },
-    "Values": {
-      "type": "richtext"
+    "values": {
+      "type": "text"
     }
   }
 }

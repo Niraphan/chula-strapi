@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "authorities",
+  "info": {
+    "singularName": "authority",
+    "pluralName": "authorities",
+    "displayName": "Authority"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "authority": {
+      "type": "text"
+    }
+  }
+}
