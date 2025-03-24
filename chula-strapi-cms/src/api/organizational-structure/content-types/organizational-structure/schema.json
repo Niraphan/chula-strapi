@@ -1,5 +1,5 @@
 {
-  "kind": "collectionType",
+  "kind": "singleType",
   "collectionName": "organizational_structures",
   "info": {
     "singularName": "organizational-structure",
@@ -19,8 +19,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": false,
-      "required": true
+      "multiple": false
     }
   }
 }

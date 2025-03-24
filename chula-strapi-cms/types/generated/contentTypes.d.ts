@@ -613,7 +613,7 @@ export interface ApiHistory2History2 extends Struct.CollectionTypeSchema {
 }
 
 export interface ApiOrganizationalStructureOrganizationalStructure
-  extends Struct.CollectionTypeSchema {
+  extends Struct.SingleTypeSchema {
   collectionName: 'organizational_structures';
   info: {
     displayName: 'Organizational Structure';
@@ -633,8 +633,7 @@ export interface ApiOrganizationalStructureOrganizationalStructure
       'api::organizational-structure.organizational-structure'
     > &
       Schema.Attribute.Private;
-    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Schema.Attribute.Required;
+    picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
