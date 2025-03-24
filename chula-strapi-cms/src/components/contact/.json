@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_contact_",
+  "info": {
+    "displayName": "หน่วยงานที่เกี่ยวข้อง"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "link": {
+      "type": "text"
+    }
+  }
+}

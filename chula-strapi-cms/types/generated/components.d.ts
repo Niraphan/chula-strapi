@@ -24,7 +24,6 @@ export interface CommanderCommander extends Struct.ComponentSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
-    priority: Schema.Attribute.String;
     role: Schema.Attribute.String;
   };
 }

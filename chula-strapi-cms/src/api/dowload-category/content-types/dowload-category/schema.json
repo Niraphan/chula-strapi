@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dowload_categories",
+  "info": {
+    "singularName": "dowload-category",
+    "pluralName": "dowload-categories",
+    "displayName": "ดาวน์โหลด-หมวดหมู่",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "mainTab": {
+      "type": "boolean"
+    }
+  }
+}

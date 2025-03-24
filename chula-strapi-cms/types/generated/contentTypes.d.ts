@@ -372,7 +372,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiActivityActivity extends Struct.CollectionTypeSchema {
   collectionName: 'activities';
   info: {
-    displayName: 'activity';
+    description: '';
+    displayName: '\u0E01\u0E34\u0E08\u0E01\u0E23\u0E23\u0E21 \u0E2D\u0E15.';
     pluralName: 'activities';
     singularName: 'activity';
   };
@@ -409,7 +410,7 @@ export interface ApiAgencyAgency extends Struct.CollectionTypeSchema {
   collectionName: 'agencies';
   info: {
     description: '';
-    displayName: ' Agency';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E07\u0E32\u0E19\u0E43\u0E19\u0E2A\u0E31\u0E07\u0E01\u0E31\u0E14';
     pluralName: 'agencies';
     singularName: 'agency';
   };
@@ -438,7 +439,8 @@ export interface ApiAgencyAgency extends Struct.CollectionTypeSchema {
 export interface ApiAuthorityAuthority extends Struct.SingleTypeSchema {
   collectionName: 'authorities';
   info: {
-    displayName: 'Authority';
+    description: '';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E2D\u0E33\u0E19\u0E32\u0E08/\u0E2B\u0E19\u0E49\u0E32\u0E17\u0E35\u0E48';
     pluralName: 'authorities';
     singularName: 'authority';
   };
@@ -466,7 +468,8 @@ export interface ApiAuthorityAuthority extends Struct.SingleTypeSchema {
 export interface ApiBannerBanner extends Struct.SingleTypeSchema {
   collectionName: 'banners';
   info: {
-    displayName: 'Banner';
+    description: '';
+    displayName: 'Banner \u0E2B\u0E19\u0E49\u0E32\u0E41\u0E23\u0E01';
     pluralName: 'banners';
     singularName: 'banner';
   };
@@ -499,7 +502,7 @@ export interface ApiCommanderChartCommanderChart
   collectionName: 'commander_charts';
   info: {
     description: '';
-    displayName: ' Commander chart';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E41\u0E1C\u0E19\u0E1C\u0E31\u0E07\u0E1C\u0E39\u0E49\u0E1A\u0E31\u0E07\u0E04\u0E31\u0E1A\u0E1A\u0E31\u0E0D\u0E0A\u0E32';
     pluralName: 'commander-charts';
     singularName: 'commander-chart';
   };
@@ -528,7 +531,7 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   collectionName: 'contacts';
   info: {
     description: '';
-    displayName: 'Contact';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E40\u0E23\u0E32';
     pluralName: 'contacts';
     singularName: 'contact';
   };
@@ -553,10 +556,42 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDowloadCategoryDowloadCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dowload_categories';
+  info: {
+    description: '';
+    displayName: '\u0E14\u0E32\u0E27\u0E19\u0E4C\u0E42\u0E2B\u0E25\u0E14-\u0E2B\u0E21\u0E27\u0E14\u0E2B\u0E21\u0E39\u0E48';
+    pluralName: 'dowload-categories';
+    singularName: 'dowload-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dowload-category.dowload-category'
+    > &
+      Schema.Attribute.Private;
+    mainTab: Schema.Attribute.Boolean;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDowloadDowload extends Struct.CollectionTypeSchema {
   collectionName: 'dowloads';
   info: {
-    displayName: 'Dowload';
+    description: '';
+    displayName: '\u0E14\u0E32\u0E27\u0E19\u0E4C\u0E42\u0E2B\u0E25\u0E14-\u0E2D\u0E31\u0E1E\u0E42\u0E2B\u0E25\u0E14\u0E44\u0E1F\u0E25\u0E4C';
     pluralName: 'dowloads';
     singularName: 'dowload';
   };
@@ -567,6 +602,11 @@ export interface ApiDowloadDowload extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    dowload_category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::dowload-category.dowload-category'
+    >;
     file: Schema.Attribute.Component<'dowload.file', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -586,7 +626,7 @@ export interface ApiHistory2History2 extends Struct.CollectionTypeSchema {
   collectionName: 'history2s';
   info: {
     description: '';
-    displayName: 'History';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E1B\u0E23\u0E30\u0E27\u0E31\u0E15\u0E34\u0E04\u0E27\u0E32\u0E21\u0E40\u0E1B\u0E47\u0E19\u0E21\u0E32 \u0E2D\u0E15.';
     pluralName: 'history2s';
     singularName: 'history2';
   };
@@ -616,7 +656,8 @@ export interface ApiOrganizationalStructureOrganizationalStructure
   extends Struct.SingleTypeSchema {
   collectionName: 'organizational_structures';
   info: {
-    displayName: 'Organizational Structure';
+    description: '';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E42\u0E04\u0E23\u0E07\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E07\u0E32\u0E19';
     pluralName: 'organizational-structures';
     singularName: 'organizational-structure';
   };
@@ -641,10 +682,40 @@ export interface ApiOrganizationalStructureOrganizationalStructure
   };
 }
 
+export interface ApiVideoVideo extends Struct.CollectionTypeSchema {
+  collectionName: 'videos';
+  info: {
+    description: '';
+    displayName: '\u0E27\u0E34\u0E14\u0E35\u0E42\u0E2D';
+    pluralName: 'videos';
+    singularName: 'video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    banner: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    facebookLink: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::video.video'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    youtubeLink: Schema.Attribute.String;
+  };
+}
+
 export interface ApiVisionVision extends Struct.SingleTypeSchema {
   collectionName: 'visions';
   info: {
-    displayName: 'vision';
+    description: '';
+    displayName: '\u0E40\u0E21\u0E19\u0E39\u0E27\u0E34\u0E2A\u0E31\u0E22\u0E17\u0E31\u0E28\u0E19\u0E4C';
     pluralName: 'visions';
     singularName: 'vision';
   };
@@ -1242,9 +1313,11 @@ declare module '@strapi/strapi' {
       'api::banner.banner': ApiBannerBanner;
       'api::commander-chart.commander-chart': ApiCommanderChartCommanderChart;
       'api::contact.contact': ApiContactContact;
+      'api::dowload-category.dowload-category': ApiDowloadCategoryDowloadCategory;
       'api::dowload.dowload': ApiDowloadDowload;
       'api::history2.history2': ApiHistory2History2;
       'api::organizational-structure.organizational-structure': ApiOrganizationalStructureOrganizationalStructure;
+      'api::video.video': ApiVideoVideo;
       'api::vision.vision': ApiVisionVision;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

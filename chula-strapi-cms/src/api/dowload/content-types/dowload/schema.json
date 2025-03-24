@@ -4,7 +4,8 @@
   "info": {
     "singularName": "dowload",
     "pluralName": "dowloads",
-    "displayName": "Dowload"
+    "displayName": "ดาวน์โหลด-อัพโหลดไฟล์",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,14 @@
       "type": "component",
       "repeatable": true,
       "component": "dowload.file"
+    },
+    "dowload_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dowload-category.dowload-category"
+    },
+    "date": {
+      "type": "date"
     }
   }
 }

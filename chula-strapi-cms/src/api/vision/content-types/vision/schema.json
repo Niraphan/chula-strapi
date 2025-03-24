@@ -4,7 +4,8 @@
   "info": {
     "singularName": "vision",
     "pluralName": "visions",
-    "displayName": "vision"
+    "displayName": "เมนูวิสัยทัศน์",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
